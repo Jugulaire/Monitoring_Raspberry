@@ -11,6 +11,7 @@ Interface de monitoring web pour raspberry Pi.
 * [Frontend] Creation d'une interface temps réel de base.
 * [Script.js] Ajout d'une variable globale pour le parametrage de l'ip surveillée.  
 * [index.php] Correction du bug de memoire libre fausse. 
+
 #To-do: 
  
 * [Frontend] Ajout d'autres affichages comme la charge CPU.
@@ -32,7 +33,7 @@ Interface de monitoring web pour raspberry Pi.
 
 *  Téléchargement de l'archive de base:   
 ```
-wget https://https://github.com/Jugulaire/Monitoring_Raspberry/archive/master.zip
+wget https://github.com/Jugulaire/Monitoring_Raspberry/archive/master.zip
 ```
 *  Décompression de l'archive:
 ```
