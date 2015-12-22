@@ -9,16 +9,15 @@ body{
 	width :100%;
 	min-width : 80%;
 	margin: auto;
-	display:inline-block;	
+	display:inline-block;
 	background-color: rgba(29,29,29,1);
-
 }
 
 div.basic{
 	box-shadow:  8px 8px 8px rgba(27,27,27,1);
-	
+	//border : 1px solid red;	
 	min-width: 200px;
-        height : 200px;
+	height: 200px;
         width:24%;
         border-radius:3px;
         background-color: rgba(47,47,47,1);
@@ -55,7 +54,35 @@ div#uptime{
 	float:left;	
 	margin-bottom:1%;
 }
-
+div#user{
+        box-shadow:  8px 8px 8px rgba(27,27,27,1);
+        float:left;
+        margin-right:1%;
+        margin-bottom:1%;
+}
+div#sys{
+        box-shadow:  8px 8px 8px rgba(27,27,27,1);
+        float:left;
+        margin-right:1%;
+        margin-bottom:1%;
+}
+div#idle{
+        box-shadow:  8px 8px 8px rgba(27,27,27,1);
+        float:left;
+        margin-bottom:1%;
+	margin-right:1%;
+}
+div#cpufreq{
+        box-shadow:  8px 8px 8px rgba(27,27,27,1);
+        float:left;
+        margin-bottom:1%;
+	margin-right:1%;
+}
+div#ESSID{
+        box-shadow:  8px 8px 8px rgba(27,27,27,1);
+        float:left;
+        margin-bottom:1%;
+}
 
 #value{
 	text-align: center;
@@ -66,7 +93,7 @@ div#uptime{
 #bigValue{
         text-align: center;
         font-weight: bold;
-        font-size: 30px;
+        font-size: 28px;
         margin-top:10px;
 }
 

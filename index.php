@@ -66,10 +66,9 @@ function fct_get($val)
 	$exp_wifisig = explode(" ",$buf_wifisig);
 	$wifisig = round($exp_wifisig[5], 2);
 
-	//Preparation valeurs wifi (vitesse)
-	$buf_wifispeed = exec("/sbin/iwconfig wlan0 | grep 'Bit'");
-	$exp_wifispeed = explode(" ",$buf_wifispeed);
-	$wifispeed = round(str_replace("Rate=","",$exp_wifispeed[11]));
+	//Preparation valeurs voltage
+	$voltage = exec('sudo /opt/vc/bin/vcgencmd measure_volts');
+		
 
 	//Preparation valeurs wifi (ESSID)
 	$buf_wifiessid = exec("/sbin/iwconfig wlan0 | grep 'ESSID'");
@@ -165,7 +164,13 @@ function fct_get($val)
 				"tempCpu" => $temp,
 				"loadAverage" => $average,
 				"ramUsed" => $memAvailable,
+				"ramTotal" => $memTotal,
 				"uptime" => $uptime,
+				"user" => $user,
+				"sys" => $system,
+				"idle" => $idle,
+				"wifiEssid" => $wifiessid,
+				"cpufreq" => $cpufreq 
 		);
 		print ( json_encode($data));
 		break;

@@ -67,11 +67,44 @@ window.onload = function monitoring ()
 			//ram utilisée
 			var ramUsed = document.getElementById('ramUsed');
                         var valRamUsed = ramUsed.lastElementChild;
-                        valRamUsed.innerHTML = data.ramUsed + ' MB';
+                        valRamUsed.innerHTML = data.ramUsed + ' MB' + " sur " + data.ramTotal + " MB disponible";
+			if(parseFloat(data.ramUsed)> 300)
+                        {
+                                valRamUsed.style.color="red";
+                        }
+                        else if (parseFloat(data.ramUsed)> 220)
+                        {
+                                valRamUsed.style.color="orange";
+                        }
+			else 
+			{
+				valRamUsed.style.color="green";
+			}
+
 			//uptime
 			var up = document.getElementById('uptime');
                         var valUp = up.lastElementChild;
                         valUp.innerHTML = data.uptime;
+			//cpu user
+			var user = document.getElementById('user');
+			var valuser = user.lastElementChild;
+			valuser.innerHTML = data.user;
+			//cpu sys 
+			var sys = document.getElementById('sys');
+                        var valsys = sys.lastElementChild;
+                        valsys.innerHTML = data.sys;
+			//cpu idle
+			var idle = document.getElementById('idle');
+                        var validle = idle.lastElementChild;
+                        validle.innerHTML = data.idle;
+			//ESSID 
+			var essid = document.getElementById('ESSID');
+                        var valessid = essid.lastElementChild;
+                        valessid.innerHTML = data.wifiEssid;
+			//frequence cpu
+			var freq = document.getElementById('cpufreq');
+                        var valfreq = freq.lastElementChild;
+                        valfreq.innerHTML = data.cpufreq;
 			//recurence
 			setTimeout(function()
 			{
