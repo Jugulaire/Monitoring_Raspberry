@@ -30,8 +30,43 @@ Interface de monitoring web pour raspberry Pi.
 
 #Installation: 
 
-1. Téléchargement de l'archive de base :
+1. Téléchargement de l'archive de base:
    
 ```
 wget https://https://github.com/Jugulaire/Monitoring_Raspberry/archive/master.zip
 ```
+
+2. Décompression de l'archive:
+
+```
+unzip master.zip
+
+```
+
+3. Déplacement des fichier vers /var/www
+```
+cd Monitoring_Raspberry-master
+mv index.php monitor.html script.js style.css /var/www
+
+```
+
+4. Changer le proprietaire de index.php (Obligatoire pour les exec)
+```
+
+cd /var/www
+chown www-data index.php
+
+```
+
+#Utilisation: 
+
+Ouvrez une page de votre navigateur favoris et tapez 
+```
+http://votreIP/monitor.html 
+
+```
+
+#Problemes connus: 
+
+1. La valeur RAM occupée est fausse.
+Cést du a un soucis que je n'ai pas encore resolut dans index.php, lors de la recuperation de la valeur RAM libre ou total le parcour du tableau est faux sur certaines version de raspbian. 
