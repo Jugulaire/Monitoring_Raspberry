@@ -34,61 +34,61 @@ p{
 div#loadaverage{
 	box-shadow:  8px 8px 8px rgba(27,27,27,1);
 	float:left;
-	margin-right:1%;
-	margin-bottom:1%;
+	margin-right:10px;
+	margin-bottom:10px;
 }
 div#temp{
 	box-shadow:  8px 8px 8px rgba(27,27,27,1);
 	float:left;
-	margin-right:1%;
-	margin-bottom:1%;
+	margin-right:10px;
+	margin-bottom:10px;
 }
 div#ramUsed{
         box-shadow:  8px 8px 8px rgba(27,27,27,1);
 	float:left;
-        margin-right:1%;
-	margin-bottom:1%;
+        margin-right:10px;
+	margin-bottom:10px;
 }
 div#uptime{
         box-shadow:  8px 8px 8px rgba(27,27,27,1);
 	float:left;	
-	margin-bottom:1%;
+	margin-bottom:10px;
 }
 div#user{
         box-shadow:  8px 8px 8px rgba(27,27,27,1);
         float:left;
-        margin-right:1%;
-        margin-bottom:1%;
+        margin-right:10px;
+        margin-bottom:10px;
 }
 div#sys{
         box-shadow:  8px 8px 8px rgba(27,27,27,1);
         float:left;
-        margin-right:1%;
-        margin-bottom:1%;
+        margin-right:10px;
+        margin-bottom:10px;
 }
 div#idle{
         box-shadow:  8px 8px 8px rgba(27,27,27,1);
         float:left;
-        margin-bottom:1%;
-	margin-right:1%;
+        margin-bottom:10px;
+	margin-right:10px;
 }
 div#cpufreq{
         box-shadow:  8px 8px 8px rgba(27,27,27,1);
         float:left;
-        margin-bottom:1%;
-	margin-right:1%;
+        margin-bottom:10px;
+	margin-right:10px;
 }
 div#ESSID{
         box-shadow:  8px 8px 8px rgba(27,27,27,1);
         float:left;
-        margin-bottom:1%;
+        margin-bottom:10px;	
+	word-wrap: break-word;
 }
 
 #value{
 	text-align: center;
 	font-weight: bold;
 	font-size: 45px;
-	margin-top:50px;
 }
 #bigValue{
         text-align: center;
