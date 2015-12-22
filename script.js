@@ -47,7 +47,7 @@ window.onload = function monitoring ()
 		
 		if(xhr.readyState == 4 ) //etat 4 données recus
 		{
-			var data = JSON.parse(xhr.responseText); // Json vers tab
+			var data = JSON.parse(xhr.responseText);
 			//temperature CPU
 			var temp = document.getElementById('temp');
 			var valTemp = temp.lastElementChild;
