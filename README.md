@@ -30,4 +30,8 @@ Interface de monitoring web pour raspberry Pi.
 
 #Installation: 
 
-1- ' wget https://https://github.com/Jugulaire/Monitoring_Raspberry/archive/master.zip '
+1. Téléchargement de l'archive de base :
+   
+```
+wget https://https://github.com/Jugulaire/Monitoring_Raspberry/archive/master.zip
+```
