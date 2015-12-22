@@ -25,10 +25,9 @@ function fct_get($val)
             fclose($fd);
             foreach($statinfo as $line) {
                 $info = explode(" ",$line);
-                //echo "<pre>"; var_dump($info); echo "</pre>";
                 if($info[0]=="cpu") {
-                    array_shift($info);  // pop off "cpu"
-                    if(!$info[0]) array_shift($info); // pop off blank space (if any)
+                    array_shift($info);
+                    if(!$info[0]) array_shift($info);
                     $total = $info[0] + $info[1] + $info[2] + $info[3];
                     $total = $total/100;
                     $user = round($info[0] / $total, 2);
@@ -39,9 +38,9 @@ function fct_get($val)
             }
 	}
 	//Preaparation des infos memoire (ram)
-	$buf_memfree =  exec("cat /proc/meminfo | grep 'MemFree:'");//Memoire libre
+	$buf_memfree =  exec("cat /proc/meminfo | grep 'MemFree:'");
 	$exp_memfree = explode(" ",$buf_memfree);
-	if (!empty($exp_memfree[9]))//si case non vide
+	if (!empty($exp_memfree[9]))
 	{
 		$memFree = round($exp_memfree[9]/1000 , 2);
 	}
@@ -49,26 +48,17 @@ function fct_get($val)
 	{
 		$memFree = round($exp_memfree[10]/1000 , 2);
 	}
-
-	$buf_memtot = exec("cat /proc/meminfo | grep 'MemTotal'");//memoire installer
+	//Memoire installer
+	$buf_memtot = exec("cat /proc/meminfo | grep 'MemTotal'");
   	$exp_memtot = explode(" ",$buf_memtot);
-	if (!empty($exp_memtot[8]))//si case non vide
+	if (!empty($exp_memtot[8]))
         {
                 $memTotal = round($exp_memtot[8]/1000 , 2);
         }
         else
         {
                 $memTotal = round($exp_memtot[9]/1000 , 2);
-        }
-
-  //Preparation valeurs wifi (force signale)
-	$buf_wifisig = exec("cat /proc/net/wireless | grep 'wlan0'");
-	$exp_wifisig = explode(" ",$buf_wifisig);
-	$wifisig = round($exp_wifisig[5], 2);
-
-	//Preparation valeurs voltage
-	$voltage = exec('sudo /opt/vc/bin/vcgencmd measure_volts');
-		
+        }		
 
 	//Preparation valeurs wifi (ESSID)
 	$buf_wifiessid = exec("/sbin/iwconfig wlan0 | grep 'ESSID'");
@@ -85,7 +75,7 @@ function fct_get($val)
 	$uptime = sprintf("%d jour(s) %02d heure(s) %02d minute(s) %02d seconde(s)" , $days,$heures,$min,$sec);
 
 	//Ram utiliser
-	$memAvailable = $memTotal-$memFree;
+	$memUsed = $memTotal-$memFree;
 
 	//load average
 	$bufAverage = exec ("cat /proc/loadavg");
@@ -136,20 +126,12 @@ function fct_get($val)
 		break;
 
 		case("Mem_used") : //ram utiliser
-		print(json_encode($memAvailable));
+		print(json_encode($memUsed));
 		break;
 
 		case("Mem_free") : //ram disponible
     		print(json_encode($memFree));
     		break;
-
-		case("Wifi_sig") : //Qualité signal wifi
-		print(json_encode($wifisig));
-		break;
-
-		case("Wifi_speed") : //vitesse theorique de la connexion wifi
-		print(json_encode($wifispeed));
-		break;
 
 		case("Wifi_ESSID") : //Point de connexion wifi
 		print(json_encode($wifiessid));
@@ -163,7 +145,7 @@ function fct_get($val)
 		$data = array(
 				"tempCpu" => $temp,
 				"loadAverage" => $average,
-				"ramUsed" => $memAvailable,
+				"ramUsed" => $memUsed,
 				"ramTotal" => $memTotal,
 				"uptime" => $uptime,
 				"user" => $user,
