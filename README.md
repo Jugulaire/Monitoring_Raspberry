@@ -10,11 +10,12 @@ Interface de monitoring web pour raspberry Pi.
 * [Backend] Performances ameliorées.
 * [Frontend] Creation d'une interface temps réel de base.
 * [Script.js] Ajout d'une variable globale pour le parametrage de l'ip surveillée.  
-* [index.php] Correction du bug de memoire libre fausse. 
+* [index.php] Correction du bug de memoire libre fausse.
+* [style.css] Modificqtion de la feuille de style pour eviter le debordement des valeurs
+* [Frontend] Ajout de nouvelles tuiles d'information 
 
 #To-do: 
  
-* [Frontend] Ajout d'autres affichages comme la charge CPU.
 * [Frontend] Ajout de graphiques pour mieux illustrer les valeurs afficher. 
 * [Backend/Frontend] Création d'une documentation.
 * [Frontend] Ajout d'une page de parametrage.
