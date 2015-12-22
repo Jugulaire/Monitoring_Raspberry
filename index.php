@@ -1,10 +1,10 @@
 <?php
-//Api dont le but est de retouné les informations systeme d'un raspberry pi
-//Cree par JUGULAIRE
+//API monitoring Raspberry pi //
+//Crée par Jugulaire //
 
 switch ($_SERVER['REQUEST_METHOD'])//On detérmine le type de requete HTTP (GET, POST,etc...)
 {
-	case('GET') ://Pour l'intant on Je code que le GET car c'est le seule dont j'ai besoin
+	case('GET') ://Seule le GET est utilisé dans notre cas
 	if(isset($_GET['value']))//Si une valeur est demandé
 	{
 		fct_get($_GET['value']);//Appele de la fonction correspondante
@@ -12,7 +12,7 @@ switch ($_SERVER['REQUEST_METHOD'])//On detérmine le type de requete HTTP (GET,
 	}
 	else//Si aucune valeur n'est demander
 	{
-	print("Consultez la documentation pour plus d'ínfos");
+	print("Error, no value specified by user");
 	}
 }
 
@@ -27,8 +27,8 @@ function fct_get($val)
                 $info = explode(" ",$line);
                 //echo "<pre>"; var_dump($info); echo "</pre>";
                 if($info[0]=="cpu") {
-                    array_shift($info);
-                    if(!$info[0]) array_shift($info);
+                    array_shift($info);  // pop off "cpu"
+                    if(!$info[0]) array_shift($info); // pop off blank space (if any)
                     $total = $info[0] + $info[1] + $info[2] + $info[3];
                     $total = $total/100;
                     $user = round($info[0] / $total, 2);
@@ -40,22 +40,36 @@ function fct_get($val)
 	}
 	//Preaparation des infos memoire (ram)
 	$buf_memfree =  exec("cat /proc/meminfo | grep 'MemFree:'");//Memoire libre
-        $exp_memfree = explode(" ",$buf_memfree);
-        $memFree = round($exp_memfree[10]/1000, 2);
+	$exp_memfree = explode(" ",$buf_memfree);
+	if (!empty($exp_memfree[9]))//si case non vide
+	{
+		$memFree = round($exp_memfree[9]/1000 , 2);
+	}
+	else 
+	{
+		$memFree = round($exp_memfree[10]/1000 , 2);
+	}
 
 	$buf_memtot = exec("cat /proc/meminfo | grep 'MemTotal'");//memoire installer
-        $exp_memtot = explode(" ",$buf_memtot);
-        $memTotal= round($exp_memtot[9]/1000, 2);
+  	$exp_memtot = explode(" ",$buf_memtot);
+	if (!empty($exp_memtot[8]))//si case non vide
+        {
+                $memTotal = round($exp_memtot[8]/1000 , 2);
+        }
+        else
+        {
+                $memTotal = round($exp_memtot[9]/1000 , 2);
+        }
 
-        //Preparation valeurs wifi
+  //Preparation valeurs wifi (force signale)
 	$buf_wifisig = exec("cat /proc/net/wireless | grep 'wlan0'");
 	$exp_wifisig = explode(" ",$buf_wifisig);
-	$wifisig = round($exp_wifisig[7], 2);
+	$wifisig = round($exp_wifisig[5], 2);
 
 	//Preparation valeurs wifi (vitesse)
 	$buf_wifispeed = exec("/sbin/iwconfig wlan0 | grep 'Bit'");
 	$exp_wifispeed = explode(" ",$buf_wifispeed);
-	$wifispeed = round(str_replace("Rate:","",$exp_wifispeed[11]));
+	$wifispeed = round(str_replace("Rate=","",$exp_wifispeed[11]));
 
 	//Preparation valeurs wifi (ESSID)
 	$buf_wifiessid = exec("/sbin/iwconfig wlan0 | grep 'ESSID'");
@@ -84,12 +98,10 @@ function fct_get($val)
 	$cpufreq = $cpufreq / 1000;
 
 	//temperature cpu
-	//$tmp =  exec('vcgencmd measure_temp | sed "s/temp=//"');
 	$tmp =  exec('cat /sys/class/thermal/thermal_zone0/temp');
-	$tmp2 =round( $tmp/1000 );
+	$temp =round( $tmp/1000 );
 
-
- 	//Switch pour renvoyer les valeurs.
+	//Switch pour renvoyer les valeurs.
 	switch($val)
 	{
 		case ("temp") ://Demande de temperature cpu
@@ -116,7 +128,7 @@ function fct_get($val)
 		print(json_encode($idle));
 		break;
 
-		case("CPU_load_average") : //Pourcentage UC utiliser
+		case("CPU_load_average") : //Pourcentage UC utiliser sur les 15 dernieres minutes
 		print(json_encode($average));
 		break;
 
@@ -125,13 +137,12 @@ function fct_get($val)
 		break;
 
 		case("Mem_used") : //ram utiliser
-		$memAvailable = $memTotal-$memFree;
 		print(json_encode($memAvailable));
 		break;
 
 		case("Mem_free") : //ram disponible
-                print(json_encode($memFree));
-                break;
+    		print(json_encode($memFree));
+    		break;
 
 		case("Wifi_sig") : //Qualité signal wifi
 		print(json_encode($wifisig));
@@ -150,9 +161,8 @@ function fct_get($val)
 		break;
 
 		case ("rapport") :
-		$fakeTemp = rand(20,70);
 		$data = array(
-				"tempCpu" => $tmp2,
+				"tempCpu" => $temp,
 				"loadAverage" => $average,
 				"ramUsed" => $memAvailable,
 				"uptime" => $uptime,
@@ -161,12 +171,8 @@ function fct_get($val)
 		break;
 
 		default:
-		print("Valeur inconnus");
+		print("Wrong value");
 		break;
 	}
-
-
 }
-
-
 ?>

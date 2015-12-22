@@ -10,7 +10,7 @@ Interface de monitoring web pour raspberry Pi.
 * [Backend] Performances ameliorées.
 * [Frontend] Creation d'une interface temps réel de base.
 * [Script.js] Ajout d'une variable globale pour le parametrage de l'ip surveillée.  
-
+* [index.php] Correction du bug de memoire libre fausse. 
 #To-do: 
  
 * [Frontend] Ajout d'autres affichages comme la charge CPU.
@@ -62,7 +62,3 @@ http://votreIP/monitor.html
 
 ```
 
-#Problemes connus: 
-
-*  La valeur RAM occupée est fausse.
-Cést du a un soucis que je n'ai pas encore resolu dans index.php, lors de la recuperation de la valeur RAM libre ou total le parcour du tableau est faux sur certaines version de raspbian. 
