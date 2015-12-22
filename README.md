@@ -52,11 +52,18 @@ mv index.php monitor.html script.js style.css /var/www
 
 4. Changer le proprietaire de index.php (Obligatoire pour les exec)
 ```
-
 cd /var/www
 chown www-data index.php
 
 ```
+
+5. Modifier script.js pour parametrer l'ip
+
+```
+sudo vim script.js
+[retirez 192.168.0.10 et placez y votre ip locale ] 
+```
+
 
 #Utilisation: 
 
@@ -69,4 +76,4 @@ http://votreIP/monitor.html
 #Problemes connus: 
 
 1. La valeur RAM occupée est fausse.
-Cést du a un soucis que je n'ai pas encore resolut dans index.php, lors de la recuperation de la valeur RAM libre ou total le parcour du tableau est faux sur certaines version de raspbian. 
+Cést du a un soucis que je n'ai pas encore resolu dans index.php, lors de la recuperation de la valeur RAM libre ou total le parcour du tableau est faux sur certaines version de raspbian. 
