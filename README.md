@@ -6,19 +6,18 @@ Interface de monitoring web pour raspberry Pi.
 
 #Ajout récents:
 
-* [Backend] Ajout des fonctions load average,rapport et uptime.
+* [Frontend] Ajout du changement de feuille de style á chaud.
 * [Backend] Performances ameliorées.
-* [Frontend] Creation d'une interface temps réel de base.
-* [Script.js] Ajout d'une variable globale pour le parametrage de l'ip surveillée.  
-* [index.php] Correction du bug de memoire libre fausse.
-* [style.css] Modificqtion de la feuille de style pour eviter le debordement des valeurs
+* [Frontend] Création d'une interface temps réel de base.
+* [Script.js] Ajout d'une variable globale pour le parametrage de l'ip surveillée.
+* [script.js] Correction du bug de colorisation de la memoire utilisée
+* [style.css] Modification de la feuille de style pour éviter le debordement des valeurs
 * [Frontend] Ajout de nouvelles tuiles d'information 
 
 #To-do: 
  
-* [Frontend] Ajout de graphiques pour mieux illustrer les valeurs afficher. 
+* [Frontend] Ajout de graphiques pour mieux illustrer les valeurs affichées. 
 * [Backend/Frontend] Création d'une documentation.
-* [Frontend] Ajout d'une page de parametrage.
 
 #ScreenShot: 
 
@@ -53,14 +52,19 @@ chown www-data index.php
 *  Modifier script.js pour parametrer l'ip
 ```
 sudo vim script.js
-[retirez 192.168.0.10 et placez y votre ip locale ] 
+[retirez 192.168.0.10 et placez-y votre ip locale ] 
 ```
+Note : Si le monitoring se situe dans un sous-dossier comme par exemple /var/www/html/votreDossier moddifier 192.168.0.10 par votreIp/votreDossier.
 
 #Utilisation: 
 
-Ouvrez une page de votre navigateur favoris et tapez 
+Ouvrez une page de votre navigateur favori et tapez 
 ```
 http://votreIP/monitor.html 
 
+```
+Note: Si les fichiers sont placés dans un sous-dossier (/var/www/html/monDossier) tapez :
+```
+http://votreIP/monDossier/monitor.html
 ```
 
