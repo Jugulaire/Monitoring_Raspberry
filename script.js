@@ -3,8 +3,12 @@
 //si liaison filaire: ifconfig eth0 | grep "inet addr"
 //si lien wifi: ifconfig wlan0 | grep "inet addr"
 
-var ipAdress = "192.168.0.10";
-
+var ipAdress = "192.168.0.35/Monitoring_Raspberry";
+//fonction switch css
+function swapStyle(fichier)
+{
+	document.getElementById('css').href=fichier;
+}
 //Requis pour AJAX 
 function getXMLHttpRequest() {
 	var xhr =null;
@@ -58,7 +62,7 @@ window.onload = function monitoring ()
 			}
 			else 
 			{
-				valTemp.style.color="green";
+				valTemp.style.color="rgba(51,184,75,1)";
 			}
 			//LoadAverage
 			var load = document.getElementById('loadaverage');
@@ -68,17 +72,17 @@ window.onload = function monitoring ()
 			var ramUsed = document.getElementById('ramUsed');
                         var valRamUsed = ramUsed.lastElementChild;
                         valRamUsed.innerHTML = data.ramUsed + ' MB' + " sur " + data.ramTotal + " MB disponible";
-			if(parseFloat(data.ramUsed)> 300)
+			if(parseFloat(data.ramUsed)>(data.ramTotal/1.2))
                         {
                                 valRamUsed.style.color="red";
                         }
-                        else if (parseFloat(data.ramUsed)> 220)
+                        else if (parseFloat(data.ramUsed)> (data.ramTotal/1.4))
                         {
                                 valRamUsed.style.color="orange";
                         }
 			else 
 			{
-				valRamUsed.style.color="green";
+				valRamUsed.style.color="rgba(51,184,75,1)";
 			}
 
 			//uptime
