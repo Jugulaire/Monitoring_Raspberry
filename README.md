@@ -21,7 +21,13 @@ Interface de monitoring web pour raspberry Pi.
 
 #ScreenShot: 
 
+Noir: 
+
 ![Alt text] (https://github.com/Jugulaire/Monitoring_Raspberry/blob/master/screenShot.png?raw=true)
+
+Blanc: 
+
+![Alt text] (https://github.com/Jugulaire/Monitoring_Raspberry/blob/master/screenShotWhite.png?raw=true )
 
 #Pré-requis: 
 
