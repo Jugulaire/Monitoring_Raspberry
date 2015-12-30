@@ -3,13 +3,17 @@
 //si liaison filaire: ifconfig eth0 | grep "inet addr"
 //si lien wifi: ifconfig wlan0 | grep "inet addr"
 
-var ipAdress = "192.168.0.35/Monitoring_Raspberry";
-//fonction switch css
+var ipAdress = "192.168.0.10";
+
+
+
+//Changement d'apparence a chaud 
 function swapStyle(fichier)
 {
 	document.getElementById('css').href=fichier;
 }
-//Requis pour AJAX 
+
+//Fonction pour une meilleur compatibilite de l'Ajax
 function getXMLHttpRequest() {
 	var xhr =null;
 
