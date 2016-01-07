@@ -18,6 +18,7 @@ Interface de monitoring web pour raspberry Pi.
  
 * [Frontend] Ajout de graphiques pour mieux illustrer les valeurs affichées. 
 * [Backend/Frontend] Création d'une documentation.
+* [Backend] modification du calcul de la ram libre (calcul erroné).
 
 #ScreenShot: 
 
