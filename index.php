@@ -37,28 +37,22 @@ function fct_get($val)
                 }
             }
 	}
+
 	//Preaparation des infos memoire (ram)
-	$buf_memfree =  exec("cat /proc/meminfo | grep 'MemFree:'");
-	$exp_memfree = explode(" ",$buf_memfree);
-	if (!empty($exp_memfree[9]))
-	{
-		$memFree = round($exp_memfree[9]/1000 , 2);
-	}
-	else 
-	{
-		$memFree = round($exp_memfree[10]/1000 , 2);
-	}
+	$buf_memfree =  exec("cat /proc/meminfo | grep -i '^memfree' | tr 'A-z :' ' ' | sed -e 's/ *//g'");
+	$memFree=round($buf_memfree/1024,0);
+
 	//Memoire installer
-	$buf_memtot = exec("cat /proc/meminfo | grep 'MemTotal'");
-  	$exp_memtot = explode(" ",$buf_memtot);
-	if (!empty($exp_memtot[8]))
-        {
-                $memTotal = round($exp_memtot[8]/1000 , 2);
-        }
-        else
-        {
-                $memTotal = round($exp_memtot[9]/1000 , 2);
-        }		
+	$buf_memtot = exec("cat /proc/meminfo | grep -i '^memtotal' | tr 'A-z :' ' ' | sed -e 's/ *//g'");
+	$memTotal=round($buf_memtot/1024,0);
+
+	//Memoire cached 
+	$buf_memCached = exec("cat /proc/meminfo | grep -i '^cached' | tr 'A-z :' ' ' | sed -e 's/ *//g'");
+	$memCached=round($buf_memCached/1024,0);
+
+	//Memoire buffered
+	$buf_memBuffered = exec("cat /proc/meminfo | grep -i '^buffers' | tr 'A-z :' ' ' | sed -e 's/ *//g'");
+	$memBuffered=round($buf_memBuffered/1024,0);
 
 	//Preparation valeurs wifi (ESSID)
 	$buf_wifiessid = exec("/sbin/iwconfig wlan0 | grep 'ESSID'");
@@ -75,7 +69,7 @@ function fct_get($val)
 	$uptime = sprintf("%d jour(s) %02d heure(s) %02d minute(s) %02d seconde(s)" , $days,$heures,$min,$sec);
 
 	//Ram utiliser
-	$memUsed = $memTotal-$memFree;
+	$memUsed = $memTotal-($memBuffered+$memCached+$memFree);
 
 	//load average
 	$bufAverage = exec ("cat /proc/loadavg");
@@ -158,7 +152,7 @@ function fct_get($val)
 		break;
 
 		default:
-		print("Wrong value");
+		print("Wrong value\n");
 		break;
 	}
 }
