@@ -3,7 +3,7 @@
 //si liaison filaire: ifconfig eth0 | grep "inet addr"
 //si lien wifi: ifconfig wlan0 | grep "inet addr"
 
-var ipAdress = "192.168.0.22";
+var ipAdress = "192.168.2.7";
 
 
 
