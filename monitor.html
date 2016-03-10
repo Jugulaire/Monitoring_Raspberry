@@ -1,80 +1,47 @@
 <!DOCTYPE html>
-<html>
-        <head>
-                <meta http-equiv="Content-Type" content="text/html;charset=utf8"/>
-                <title> </title>
-                <link id="css" rel="stylesheet" type="text/css" href="style.css">
-       		<script type="text/javascript" src="script.js"></script>
-	 </head>
-	
-        <body>
-		<div class="menu"> 
-		<button onclick="swapStyle('whiteStyle.css')">Blanc</button>
-		<button onclick="swapStyle('style.css')"> Noir (défaut)</button>
-		</div>
-		<div class="container">
-			<div class="basic" id="temp">
-				<div class ="title">
-					<p class="name">Température</p> 
-				</div>
-				<p class="value">N/A</p>			
-			</div>
-			<div class="basic" id="loadaverage">
-				<div class="title"> 
-					<p class="name">Load Average</p>
-				</div>
-				<p class="value">N/A</p>
-			</div>
-			<div class="basic" id="ramUsed">
-                        	<div class="title">
-                                	<p class="name">RAM occupée</p>
-                        	</div>
-                        	<p class="bigValue">N/A</p>
-                	</div>
-			<div class="basic" id="uptime">
-                        	<div class="title">
-                                	<p class="name">Uptime</p>
-                        	</div>
-                        	<p class="bigValue">N/A</p>
-                	</div>
-		</div>
-		 <div id="container">
-                        <div class="basic" id="user">
-                                <div class ="title">
-                                        <p class="name">Pourcentage UC user</p>
-                                </div>
-                                <p class="value">N/A</p>
-                        </div>
-                        <div class="basic" id="sys">
-                                <div class="title">
-                                        <p class="name">Poucentage UC system</p>
-                                </div>
-                                <p class="value">N/A</p>
-                        </div>
-                        <div class="basic" id="idle">
-                                <div class="title">
-                                        <p class="name">Poucentage UC libre</p>
-                                </div>
-                                <p class="value">N/A</p>
-                        </div>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Monitor-My-Pi</title>
+        <link rel="stylesheet" href="style.css">
+        
+    </head>
+    <body>    
+        <header> <!--Entete du monitoring qui contien le hostname -->
+            <p id="hostname">My Pi</p>
+        </header>
+        <div class="parent">
+            <div id="infoSys" class="bloc"> <!-- Div qui contiendra les infos systemes et les charts -->
+                <div id="title">
+                    <h2>Informations Systéme</h2>
                 </div>
-		 <div class="container">
-                        <div class="basic" id="cpufreq">
-                                <div class ="title">
-                                        <p class="name">Frequence cpu</p>
-                                </div>
-                                <p class="value">N/A</p>
-                        </div>
-                        <div class="basic" id="ESSID">
-                                <div class="title">
-                                        <p class="name">ESSID</p>
-                                </div>
-                                <p class="bigValue">N/A</p>
-                        </div>
+                <div id=containerGauge> 
+                    <div id="gauge" class="gauge"></div>
+                    <div id="gauge2" class="gauge"></div>
+                    <div id="gauge3" class="gauge"></div>
+                    <div id="gauge4" class="gauge"></div>
                 </div>
-
-        </body>
-
+            </div>
+            <div id="uptime" class="bloc">
+                <div id="title">
+                <h2>Uptime</h2>
+                </div>
+                <p>NA jour(s) N/A heure(s) N/A minute(s) N/A seconde(s)</p>
+            </div>
+            <div id="sysCommand" class="bloc">
+                <div  id="title">
+                <h2>Commandes Système</h2>
+                </div>
+                    <a href="#" onclick="reboot()"><img src="img/arrows.png">Reboot du Système</a>
+                    <a href="#" onclick="turnoff()"><img src="img/power-1.png">Eteindre le Système</a>
+                    <p><img src="img/cx.png">Etat: <em id="etat">&nbsp Actualisation en cours </em></p>
+            </div>
+        </div>
+        <script src="script/raphael-2.1.4.min.js"></script>
+        <script src="script/justgage.js"></script>
+        <script type="text/javascript" src="script/script.js"></script>
+	<script type="text/javascript" src="script/gauge.js"></script>
+	<script type="text/javascript" src="script/ping.js"></script>
+    </body>
+         
 </html>
-
-

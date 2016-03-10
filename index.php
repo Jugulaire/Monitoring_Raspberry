@@ -5,15 +5,15 @@
 switch ($_SERVER['REQUEST_METHOD'])//On detérmine le type de requete HTTP (GET, POST,etc...)
 {
 	case('GET') ://Seule le GET est utilisé dans notre cas
-	if(isset($_GET['value']))//Si une valeur est demandé
-	{
-		fct_get($_GET['value']);//Appele de la fonction correspondante
-		break;
-	}
-	else//Si aucune valeur n'est demander
-	{
-	print("Error, no value specified by user");
-	}
+		if(isset($_GET['value']))//Si une valeur est demandé
+		{
+			fct_get($_GET['value']);//Appele de la fonction correspondante
+			break;
+		}
+		else//Si aucune valeur n'est demander
+		{
+			print("Error, no value specified by user");
+		}
 }
 
 function fct_get($val)
@@ -82,8 +82,10 @@ function fct_get($val)
 
 	//temperature cpu
 	$tmp =  exec('cat /sys/class/thermal/thermal_zone0/temp');
-	$temp =round( $tmp/1000 );
-
+	$temp = round( $tmp/1000 );
+	
+	//Hostname
+	$hostName = exec ('/bin/hostname'); 
 	//Switch pour renvoyer les valeurs.
 	switch($val)
 	{
@@ -146,9 +148,18 @@ function fct_get($val)
 				"sys" => $system,
 				"idle" => $idle,
 				"wifiEssid" => $wifiessid,
-				"cpufreq" => $cpufreq 
+				"cpufreq" => $cpufreq,
+				"hostname"=> $hostName 
 		);
 		print ( json_encode($data));
+		break;
+
+		case ("rbt") : //reboot 
+		exec ('sudo /sbin/reboot');
+		break;
+		
+		case ("trnoff"):
+		exec ('sudo /sbin/shutdown -h now');		
 		break;
 
 		default:

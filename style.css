@@ -1,125 +1,93 @@
-body{
-	background-color: rgba(29,29,29,1);
-	width:80%;
-	margin: 0 auto;
-	margin-top:10px;
+html {
+    background-color: #e6e6e6;
+    font-family: Futura-Medium ,sans-serif ;
+    width: 100%;
+    font-style: normal;
 }
-
-.menu {
-	margin-top:10px;
-	margin-bottom:10px;
+body {
+    margin:0;
+    padding: 0;
 }
-
-button{
-        background-color: rgba(47,47,47,1);
-        border:1px solid rgba(120,120,120,0.25);
-        color: rgba(204,204,204,1);
+header {
+    height: 50px;
+    background-color: #333333;
 }
-
-.container{
-	width :100%;
-	min-width : 80%;
-	margin: auto;
-	display:inline-block;
-	background-color: rgba(29,29,29,1);
+header p {
+    font-size: 20pt;
+    margin-top: auto;
+    padding-top: 10px;
+    margin-left: 30px;
+    color: white;
+    font-weight: normal;
 }
-
-div.basic{
-	box-shadow:  8px 8px 8px rgba(27,27,27,1);
-	//border : 1px solid red;	
-	min-width: 200px;
-	height: 200px;
-        width:24%;
-        border-radius:3px;
-        background-color: rgba(47,47,47,1);
-	border:1px solid rgba(120,120,120,0.25);
+.parent{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
-
-p{
-	border: 0px solid red;
-	font-family: Helvetica;
-	color: rgba(204,204,204,1);
-	padding: 2px; 
+.bloc{
+    margin-top: 8px;
+    background-color: white;
+    display: flex;
 }
-
-div#loadaverage{
-	box-shadow:  8px 8px 8px rgba(27,27,27,1);
-	float:left;
-	margin-right:10px;
-	margin-bottom:10px;
+h2{
+    margin-left:30px;
+    margin-top: 10px;
+    font-size: 17px;
+    color: #808080;
+    font-weight: normal;  
 }
-div#temp{
-	box-shadow:  8px 8px 8px rgba(27,27,27,1);
-	float:left;
-	margin-right:10px;
-	margin-bottom:10px;
+#infoSys{
+    width: auto;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
 }
-div#ramUsed{
-        box-shadow:  8px 8px 8px rgba(27,27,27,1);
-	float:left;
-        margin-right:10px;
-	margin-bottom:10px;
+#containerGauge{
+    display: flex;
+    height: 200px;
+    margin: auto;
+    margin-top: 5px;
+    #border: 1px solid red;
 }
-div#uptime{
-        box-shadow:  8px 8px 8px rgba(27,27,27,1);
-	float:left;	
-	margin-bottom:10px;
+.gauge{
+    display: flex;
+    color: #808080;
+    #border:1px solid red;
+} 
+#uptime{
+    width: 49%;
+    height: 150px;
+    align-self: flex-start;
 }
-div#user{
-        box-shadow:  8px 8px 8px rgba(27,27,27,1);
-        float:left;
-        margin-right:10px;
-        margin-bottom:10px;
+#uptime p{
+    color: #808080;
+    margin: auto;
+    margin-left: 5px;
 }
-div#sys{
-        box-shadow:  8px 8px 8px rgba(27,27,27,1);
-        float:left;
-        margin-right:10px;
-        margin-bottom:10px;
+#sysCommand{
+    display: flex;
+    align-self: flex-start;
+    width: 49%;
+    height: 250px;
+    flex-direction: column;
 }
-div#idle{
-        box-shadow:  8px 8px 8px rgba(27,27,27,1);
-        float:left;
-        margin-bottom:10px;
-	margin-right:10px;
+#sysCommand a, #sysCommand p{
+    display: flex;
+    margin-left: 70px;
+    margin-top: 25px;
+    color: #808080;
+    text-decoration: none;
+}                 
+#tilte{
+    display: flex;
 }
-div#cpufreq{
-        box-shadow:  8px 8px 8px rgba(27,27,27,1);
-        float:left;
-        margin-bottom:10px;
-	margin-right:10px;
-}
-div#ESSID{
-        box-shadow:  8px 8px 8px rgba(27,27,27,1);
-        float:left;
-        margin-bottom:10px;	
-	word-wrap: break-word;
-}
-
-.value{
-	text-align: center;
-	font-weight: bold;
-	font-size: 45px;
-}
-.bigValue{
-        text-align: center;
-        font-weight: bold;
-        font-size: 28px;
-        margin-top:10px;
-}
-
-
-.name{
-	margin-top: 0px;
-	text-align: left;
-	font-size: 12px;
-	font-weight:bold;
-}
-.title{ 
-	border-bottom:1px solid rgba(120,120,120,0.25);
-	border-radius:3px;
-	height : 25px;
-	background-image:linear-gradient(rgba(65,65,65,1),rgba(47,47,47,1));
-	padding-left:2px;
-	padding-top:2px;
+img {
+    width:30px;
+    height:30px;
+    display: flex;
+    margin-right: 15px;
+    vertical-align:middle;
 }
