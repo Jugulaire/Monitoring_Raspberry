@@ -6,29 +6,24 @@ Interface de monitoring web pour raspberry Pi.
 
 #Ajout récents:
 
-* [Frontend] Ajout du changement de feuille de style á chaud.
+* [Frontend] Nouveau style.
 * [Backend] Performances ameliorées.
-* [Frontend] Création d'une interface temps réel de base.
+* [Frontend] Création d'une interface temps réel avec des jauges.
 * [Script.js] Ajout d'une variable globale pour le parametrage de l'ip surveillée.
-* [script.js] Correction du bug de colorisation de la memoire utilisée
-* [style.css] Modification de la feuille de style pour un switch entre un theme dark et un theme white
-* [Backend] Correction du bug de RAM libre
+* [script.js] Correction du bug de colorisation de la memoire utilisée.
+* [style.css] Ajout d'une fonction reboot et extinction distante.
+* [Backend] Correction du bug de RAM libre.
 
 #To-do: 
  
-* [Frontend] Ajout de graphiques pour mieux illustrer les valeurs affichées. 
+* [Frontend] Ajout d'une fonction pour interagir avec le gpio. 
 * [Backend/Frontend] Création d'une documentation.
-* [Frontend] Création d'une interface de commande.
+* [Frontend] Création de messages dynamiques en haut de page.
 
 #ScreenShot: 
-
-Theme Dark : 
+ 
 
 ![Alt text] (https://github.com/Jugulaire/Monitoring_Raspberry/blob/master/screenShot.png?raw=true)
-
-Theme White: 
-
-![Alt text] (https://github.com/Jugulaire/Monitoring_Raspberry/blob/master/screenShotWhite.png?raw=true )
 
 #Pré-requis: 
 
