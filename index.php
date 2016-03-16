@@ -19,8 +19,8 @@ switch ($_SERVER['REQUEST_METHOD'])//On detérmine le type de requete HTTP (GET,
 function fct_get($val)
 {
 	//Preparations des valeurs CPU_Idle
-	$cpuIdle =intval( exec('/usr/bin/top -bn1 | /bin/grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/"'));
-	$
+	$cpuIdle = intval(exec('top -bn1| grep "Cpu(s)" | sed "s/\ \ */\ /g" | cut -d " " -f8'));
+	
 
 	//Preaparation des infos memoire (ram)
 	$buf_memfree =  exec("cat /proc/meminfo | grep -i '^memfree' | tr 'A-z :' ' ' | sed -e 's/ *//g'");
