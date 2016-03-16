@@ -20,7 +20,7 @@ function fct_get($val)
 {
 	//Preparations des valeurs CPU_Idle
 	$cpuIdle = exec('top -bn 2| grep "Cpu(s)" | sed "s/\ \ */\ /g" | cut -d " " -f8');
-	$cpuIdle = intval($cpudIdle);	
+	//$cpuIdle = intval($cpudIdle);	
 
 	//Preaparation des infos memoire (ram)
 	$buf_memfree =  exec("cat /proc/meminfo | grep -i '^memfree' | tr 'A-z :' ' ' | sed -e 's/ *//g'");
