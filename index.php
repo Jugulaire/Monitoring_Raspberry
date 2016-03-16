@@ -18,25 +18,9 @@ switch ($_SERVER['REQUEST_METHOD'])//On detérmine le type de requete HTTP (GET,
 
 function fct_get($val)
 {
-	//Preparations des valeurs CPU_Load
-	$fd = fopen("/proc/stat","r");
-        if ($fd) {
-            $statinfo = explode("\n",fgets($fd, 1024));
-            fclose($fd);
-            foreach($statinfo as $line) {
-                $info = explode(" ",$line);
-                if($info[0]=="cpu") {
-                    array_shift($info);
-                    if(!$info[0]) array_shift($info);
-                    $total = $info[0] + $info[1] + $info[2] + $info[3];
-                    $total = $total/100;
-                    $user = round($info[0] / $total, 2);
-                    $nice = round($info[1] / $total, 2);
-                    $system = round($info[2] / $total, 2);
-                    $idle = round($info[3] / $total, 2);
-                }
-            }
-	}
+	//Preparations des valeurs CPU_Idle
+	$cpuIdle =intval( exec('/usr/bin/top -bn1 | /bin/grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/"'));
+	$
 
 	//Preaparation des infos memoire (ram)
 	$buf_memfree =  exec("cat /proc/meminfo | grep -i '^memfree' | tr 'A-z :' ' ' | sed -e 's/ *//g'");
@@ -105,21 +89,12 @@ function fct_get($val)
 		print(json_encode($cpufreq));
 		break;
 
-		case("CPU_load_user") ://Pourcentage UC utiliser par des processus user
-		print(json_encode($user));
+
+
+		case("CPU_idle") : //Pourcentage UC utiliser par des processus system
+		print(json_encode($cpuidle));
 		break;
 
-		case("CPU_load_nice") : //Pourcentage UC utiliser par des processus nicé
-		print(json_encode($nice));
-		break;
-
-		case("CPU_load_system") : //Pourcentage UC utiliser par des processus system
-		print(json_encode($system));
-		break;
-
-		case("CPU_load_idle") : //Pourcentage de l'uc libre
-		print(json_encode($idle));
-		break;
 
 		case("CPU_load_average") : //Pourcentage UC utiliser sur les 15 dernieres minutes
 		print(json_encode($average));
@@ -152,9 +127,7 @@ function fct_get($val)
 				"ramUsed" => $memUsed,
 				"ramTotal" => $memTotal,
 				"uptime" => $uptime,
-				"user" => $user,
-				"sys" => $system,
-				"idle" => $idle,
+				"cpuIdle" => $cpuIdle,
 				"wifiEssid" => $wifiessid,
 				"cpufreq" => $cpufreq,
 				"hostname"=> $hostName,

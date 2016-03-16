@@ -91,7 +91,7 @@ function turnoff()
         		g4.refresh(data.loadAverage);
 
   			//frequence cpu
-  		    	g2.refresh(100-data.idle);
+  		    	g2.refresh(100-data.cpuIdle);
 
 			//Hostname
 			document.getElementById('hostname').innerHTML = data.hostname;
