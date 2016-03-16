@@ -85,7 +85,15 @@ function fct_get($val)
 	$temp = round( $tmp/1000 );
 	
 	//Hostname
-	$hostName = exec ('/bin/hostname'); 
+	$hostName = exec ('/bin/hostname');
+
+	//usage disque 
+	$diskTotal = exec ('/bin/df -h / | /bin/grep "/" | /bin/sed "s/\ \ */\ /g" | /usr/bin/cut -d " " -f2 | /bin/sed "s/G/\ /g"');
+	
+	$diskUsed = exec ('/bin/df -h / | /bin/grep "/" | /bin/sed "s/\ \ */\ /g" | /usr/bin/cut -d " " -f3 | /bin/sed "s/G/\ /g"');
+	
+	$diskFree = exec ('/bin/df -h / | /bin/grep "/" | /bin/sed "s/\ \ */\ /g" | /usr/bin/cut -d " " -f4 | /bin/sed "s/G/\ /g"');
+ 
 	//Switch pour renvoyer les valeurs.
 	switch($val)
 	{
@@ -149,7 +157,10 @@ function fct_get($val)
 				"idle" => $idle,
 				"wifiEssid" => $wifiessid,
 				"cpufreq" => $cpufreq,
-				"hostname"=> $hostName 
+				"hostname"=> $hostName,
+				"diskTotal"=> $diskTotal,
+				"diskUsed"=> $diskUsed,
+				"diskFree"=> $diskFree 
 		);
 		print ( json_encode($data));
 		break;

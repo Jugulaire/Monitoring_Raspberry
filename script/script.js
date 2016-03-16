@@ -5,7 +5,7 @@
   //si lien wifi: ifconfig wlan0 | grep "inet addr"
 
 
-  var ipAdress = "192.168.2.7/html/interface%20rpi/index.php";
+  var ipAdress = "192.168.2.7";
 
   //Fonction pour une meilleur compatibilite de l'Ajax
   function getXMLHttpRequest() {
@@ -76,7 +76,7 @@ function turnoff()
   		{
   			var data = JSON.parse(xhr.responseText);
   			//temperature CPU
-  			g.refresh(data.tempCpu);
+  			g.refresh(data.diskUsed,data.diskTotal);
 
   			//ram utilisée
         		g3.config.setMax = data.ramTotal;
@@ -91,7 +91,7 @@ function turnoff()
         		g4.refresh(data.loadAverage);
 
   			//frequence cpu
-  		    	g2.refresh(data.cpufreq);
+  		    	g2.refresh(100-data.idle);
 
 			//Hostname
 			document.getElementById('hostname').innerHTML = data.hostname;

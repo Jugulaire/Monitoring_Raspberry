@@ -5,7 +5,7 @@ var g = new JustGage({
       value: 0,
       min: 0,
       max: 100,
-      title: "Température",
+      title: "Usage disque dur",
       titleFontColor: "#808080",
       titlePosition: "below",
       valueFontColor: "#808080",
@@ -14,7 +14,8 @@ var g = new JustGage({
                     "#f62b2b"],
       gaugeColor: "#e2e2e2",
       formatNumber: true,
-      label: "C",
+      label: "Go",
+      decimals:true,
       relativeGaugeSize: true,
   });
 
@@ -22,8 +23,8 @@ var g = new JustGage({
       id: "gauge2",
       value: 0,
       min: 0,
-      max: 3200,
-      title: "Fréquence CPU",
+      max: 100,
+      title: "Utilisation UC",
       titleFontColor: "#808080",
       titlePosition: "below",
       valueFontColor: "#808080",
@@ -31,7 +32,8 @@ var g = new JustGage({
                     "#d1ee0f",
                     "#f62b2b"],
       gaugeColor: "#e2e2e2",
-      label: "MhZ",
+      label: "%",
+      decimals:true,
       relativeGaugeSize: true,
   });
   var g3 = new JustGage({
