@@ -19,7 +19,7 @@ switch ($_SERVER['REQUEST_METHOD'])//On detérmine le type de requete HTTP (GET,
 function fct_get($val)
 {
 	//Preparations des valeurs CPU_Idle
-	$cpuIdle = intval(exec('top -bn1| grep "Cpu(s)" | sed "s/\ \ */\ /g" | cut -d " " -f8'));
+	$cpuIdle = exec('top -bn1| grep "Cpu(s)" | sed "s/\ \ */\ /g" | cut -d " " -f8');
 	
 
 	//Preaparation des infos memoire (ram)
