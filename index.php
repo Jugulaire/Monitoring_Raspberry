@@ -18,8 +18,21 @@ switch ($_SERVER['REQUEST_METHOD'])//On detérmine le type de requete HTTP (GET,
 
 function fct_get($val)
 {
+	//Placez ici le nom de l'interface reseau a surveiller 	
+	$interface = 'wlan0';
+
+
 	//Preparations des valeurs CPU_Idle
 	$cpuIdle = exec('top -bn 2| grep "Cpu(s)" | sed "s/\ \ */\ /g" | cut -d " " -f8');
+
+	//Rx
+	$rxCmd="cat /sys/class/net/{$interface}/statistics/rx_bytes";
+	$rxBytes = exec($rxCmd);
+	$rx = $rxBytes/1000000;
+	//Tx	
+	$txCmd="cat /sys/class/net/{$interface}/statistics/tx_bytes";
+	$txBytes = exec($txCmd);
+	$tx = $txBytes/1000000;
 
 	//Preaparation des infos memoire (ram)
 	$buf_memfree =  exec("cat /proc/meminfo | grep -i '^memfree' | tr 'A-z :' ' ' | sed -e 's/ *//g'");
@@ -76,7 +89,9 @@ function fct_get($val)
 				"hostname"=> $hostName,
 				"diskTotal"=> $diskTotal,
 				"diskUsed"=> $diskUsed,
-				"diskFree"=> $diskFree 
+				"diskFree"=> $diskFree,
+				"rx"=>$rx,
+				"tx"=>$tx
 		);
 		print ( json_encode($data));
 		break;

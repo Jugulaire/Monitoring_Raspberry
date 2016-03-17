@@ -1,6 +1,10 @@
 //Ping du serveur 
 // Indiquez IP ci dessous 
-var ip = "192.168.2.7"
+
+var ip = window.location.toString();
+var arrayIp=ip.split("/");
+var ip = arrayIp[2];
+
 function ping(ip, callback) {
 
     if (!this.inUse) {

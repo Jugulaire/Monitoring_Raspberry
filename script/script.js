@@ -1,11 +1,7 @@
-  
-  //Modifier la valeur de l'adresse IP par celle de votre RPI
-  //Pour connaitre votre IP faites:
-  //si liaison filaire: ifconfig eth0 | grep "inet addr"
-  //si lien wifi: ifconfig wlan0 | grep "inet addr"
 
-
-  var ipAdress = "192.168.2.7";
+  var ip = window.location.toString();
+  var arrayIp=ip.split("/");
+  var ipAdress = arrayIp[2];
 
   //Fonction pour une meilleur compatibilite de l'Ajax
   function getXMLHttpRequest() {
