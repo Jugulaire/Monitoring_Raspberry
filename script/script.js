@@ -65,7 +65,6 @@ function turnoff()
   {
   	var xhr = getXMLHttpRequest();
   	xhr.open("GET", "http://" + ipAdress + "/?value=rapport" ,true);
-  	//xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
   	xhr.send();
 
   	xhr.onreadystatechange = function() //appeler a chaque changement d'etat
@@ -75,7 +74,7 @@ function turnoff()
   		if(xhr.readyState == 4 ) //etat 4 données recus
   		{
   			var data = JSON.parse(xhr.responseText);
-  			//temperature CPU
+  			//Usage HDD
   			g.refresh(data.diskUsed,data.diskTotal);
 
   			//ram utilisée
@@ -90,12 +89,12 @@ function turnoff()
   			//load
         		g4.refresh(data.loadAverage);
 
-  			//frequence cpu
+  			//cpu usage %
   		    	g2.refresh(100-data.cpuIdle);
 
 			//Hostname
 			document.getElementById('hostname').innerHTML = data.hostname;
-			document.title = "[" + data.hostname +"] " + data.tempCpu + "°C";
+			document.title = "[" + data.hostname +"] ";
   			//recurence
   			setTimeout(function()
   			{

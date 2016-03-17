@@ -12,7 +12,7 @@ switch ($_SERVER['REQUEST_METHOD'])//On detérmine le type de requete HTTP (GET,
 		}
 		else//Si aucune valeur n'est demander
 		{
-			print("Error, no value specified by user");
+			header('Location: monitor.html ');
 		}
 }
 
@@ -20,7 +20,6 @@ function fct_get($val)
 {
 	//Preparations des valeurs CPU_Idle
 	$cpuIdle = exec('top -bn 2| grep "Cpu(s)" | sed "s/\ \ */\ /g" | cut -d " " -f8');
-	//$cpuIdle = intval($cpudIdle);	
 
 	//Preaparation des infos memoire (ram)
 	$buf_memfree =  exec("cat /proc/meminfo | grep -i '^memfree' | tr 'A-z :' ' ' | sed -e 's/ *//g'");
@@ -38,12 +37,6 @@ function fct_get($val)
 	$buf_memBuffered = exec("cat /proc/meminfo | grep -i '^buffers' | tr 'A-z :' ' ' | sed -e 's/ *//g'");
 	$memBuffered=round($buf_memBuffered/1024,0);
 
-	//Preparation valeurs wifi (ESSID)
-	$buf_wifiessid = exec("/sbin/iwconfig wlan0 | grep 'ESSID'");
-	$exp_wifiessid = explode(" ",$buf_wifiessid);
-	$toDelete = array( "ESSID", ":", "\"");
-	$wifiessid =str_replace($toDelete,"",$exp_wifiessid[8]);
-
 	//préparation uptime
 	$upSecondes = exec("/usr/bin/cut -d. -f1 /proc/uptime");
 	$sec = ($upSecondes%60);
@@ -60,14 +53,6 @@ function fct_get($val)
 	$expAverage = explode(" ",$bufAverage);
 	$average = $expAverage[2];
 
-	//Cpu Frequence
-	$cpufreq=exec("cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq");
-	$cpufreq = $cpufreq / 1000;
-
-	//temperature cpu
-	$tmp =  exec('cat /sys/class/thermal/thermal_zone0/temp');
-	$temp = round( $tmp/1000 );
-	
 	//Hostname
 	$hostName = exec ('/bin/hostname');
 
@@ -81,55 +66,13 @@ function fct_get($val)
 	//Switch pour renvoyer les valeurs.
 	switch($val)
 	{
-		case ("temp") ://Demande de temperature cpu
-		print( json_encode($tmp2));
-		break;
-
-		case ("CPU_freq") : //Frequence cpu
-		print(json_encode($cpufreq));
-		break;
-
-
-
-		case("CPU_idle") : //Pourcentage UC utiliser par des processus system
-		print(json_encode($cpuidle));
-		break;
-
-
-		case("CPU_load_average") : //Pourcentage UC utiliser sur les 15 dernieres minutes
-		print(json_encode($average));
-		break;
-
-		case("Mem_total") : //Ram installé
-		print(json_encode($memTotal));
-		break;
-
-		case("Mem_used") : //ram utiliser
-		print(json_encode($memUsed));
-		break;
-
-		case("Mem_free") : //ram disponible
-    		print(json_encode($memFree));
-    		break;
-
-		case("Wifi_ESSID") : //Point de connexion wifi
-		print(json_encode($wifiessid));
-		break;
-
-		case ("uptime") : //Uptime de la machine
-		print ($uptime);
-		break;
-
 		case ("rapport") :
 		$data = array(
-				"tempCpu" => $temp,
 				"loadAverage" => $average,
 				"ramUsed" => $memUsed,
 				"ramTotal" => $memTotal,
 				"uptime" => $uptime,
 				"cpuIdle" => $cpuIdle,
-				"wifiEssid" => $wifiessid,
-				"cpufreq" => $cpufreq,
 				"hostname"=> $hostName,
 				"diskTotal"=> $diskTotal,
 				"diskUsed"=> $diskUsed,
@@ -147,7 +90,7 @@ function fct_get($val)
 		break;
 
 		default:
-		print("Wrong value\n");
+		header('Location: monitor.html ');
 		break;
 	}
 }
