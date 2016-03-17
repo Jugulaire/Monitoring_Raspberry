@@ -87,7 +87,7 @@ function turnoff()
 
   			//cpu usage
 			if(!isNaN(data.cpuIdle)) 
-  		    		g2.refresh(data.cpuIdle);
+  		    		g2.refresh((100-data.cpuIdle));
 
 			//Hostname
 			document.getElementById('hostname').innerHTML = data.hostname;
