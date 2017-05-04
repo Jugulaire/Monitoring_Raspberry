@@ -1,10 +1,10 @@
 # Monitoring_Raspberry
 
-#Description: 
+# Description: 
 
 Interface de monitoring web pour raspberry Pi.
 
-#Ajout récents:
+# Ajout récents:
 
 * [Frontend] Nouveau style.
 * [Backend] Performances ameliorées.
@@ -14,24 +14,24 @@ Interface de monitoring web pour raspberry Pi.
 * [style.css] Ajout d'une fonction reboot et extinction distante.
 * [Backend] Correction du bug de RAM libre.
 
-#To-do: 
+# To-do: 
  
 * [Frontend] Ajout d'une fonction pour interagir avec le gpio. 
 * [Backend/Frontend] Création d'une documentation.
 * [Frontend] Création de messages dynamiques en haut de page.
 
-#ScreenShot: 
+# ScreenShot: 
  
 
 ![Alt text] (https://github.com/Jugulaire/Monitoring_Raspberry/blob/master/screenShot.png?raw=true)
 
-#Pré-requis: 
+# Pré-requis: 
 
 * Un serveur web fonctionnel avec PHP5.
 * Un Raspberry Pi connecté en local avec une IP fixe.
 * Un acces FTP. 
 
-#Installation: 
+# Installation: 
 
 *  Téléchargement de l'archive de base:   
 ```
@@ -58,7 +58,7 @@ sudo vim script.js
 ```
 Note : Si le monitoring se situe dans un sous-dossier comme par exemple /var/www/html/votreDossier moddifier 192.168.0.10 par votreIp/votreDossier.
 
-#Utilisation: 
+# Utilisation: 
 
 Ouvrez une page de votre navigateur favori et tapez 
 ```
