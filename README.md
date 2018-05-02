@@ -23,7 +23,7 @@ Interface de monitoring web pour raspberry Pi.
 # ScreenShot: 
  
 
-![Alt text] (https://github.com/Jugulaire/Monitoring_Raspberry/blob/master/screenShot.png?raw=true)
+![Demo] (https://github.com/Jugulaire/Monitoring_Raspberry/blob/master/screenShot.png)
 
 # Pré-requis: 
 
