@@ -23,7 +23,7 @@ Interface de monitoring web pour raspberry Pi.
 # ScreenShot: 
  
 
-![Demo] (screenShot.png)
+![alt text](screenShot.png)
 
 # Pré-requis: 
 
